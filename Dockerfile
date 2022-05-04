@@ -5,6 +5,6 @@ RUN apk add --update py2-pip && \
  pip install --no-cache-dir -r requirements.txt
 COPY store/ /usr/src/app/
 
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["python"]
 CMD ["/usr/src/app/app.py"]
