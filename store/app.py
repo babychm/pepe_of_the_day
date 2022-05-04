@@ -1,7 +1,8 @@
 from flask import Flask, render_template
 import random
+import os
 app = Flask(__name__)
-# list of cat images
+
 images = [
 "https://pbs.twimg.com/profile_images/1285384386771394560/1kSxAdMB_400x400.jpg",
 "https://i.pinimg.com/474x/b4/f1/f1/b4f1f19330a0542e69f1ea8c92ced4fc.jpg",
@@ -12,6 +13,7 @@ images = [
 @app.route('/')
 def index():
   url = random.choice(images)
-  return render_template('index.html', url=url)
+  ip = os.system('curl http://169.254.169.254/latest/meta-data/local-ipv4')
+  return render_template('index.html', url=url, ip=ip)
 if __name__ == "__main__":
  app.run(host = "0.0.0.0")
