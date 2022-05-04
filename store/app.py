@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import random
-import os
+import requests
 app = Flask(__name__)
 
 images = [
@@ -15,7 +15,8 @@ def index():
   url = random.choice(images)
   return render_template('index.html', url=url)
 def index():
-  ip = os.system('curl http://169.254.169.254/latest/meta-data/local-ipv4')
-  return render_template('index.html', ip=ip)
+    res = request.get('http://169.254.169.254/latest/meta-data/local-ipv4')
+    ip = res.text
+    return render_template('index.html', ip=ip)
 if __name__ == "__main__":
  app.run(host = "0.0.0.0")
