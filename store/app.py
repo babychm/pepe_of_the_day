@@ -13,10 +13,8 @@ images = [
 @app.route('/')
 def index():
   url = random.choice(images)
-  return render_template('index.html', url=url)
-def index():
-    res = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4')
-    ip = res.text
-    return render_template('index.html', ip=ip)
+  res = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4')
+  ip = res.text
+  return render_template('index.html', url=url, ip=ip)
 if __name__ == "__main__":
  app.run(host = "0.0.0.0")
