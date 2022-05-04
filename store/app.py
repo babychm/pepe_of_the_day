@@ -15,7 +15,7 @@ def index():
   url = random.choice(images)
   return render_template('index.html', url=url)
 def index():
-    res = request.get('http://169.254.169.254/latest/meta-data/local-ipv4')
+    res = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4')
     ip = res.text
     return render_template('index.html', ip=ip)
 if __name__ == "__main__":
